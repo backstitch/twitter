@@ -31,14 +31,18 @@ module Twitter
     predicate_attr_reader :favorited, :possibly_sensitive, :retweeted,
                           :truncated
 
-    # @note May be > 140 characters.
+    # @note May be > 280 characters.
+    # If a tweet was extended by adding "tweet_mode: ‘extended’" to the request,
+    # the complete tweet text will be stored in the payload as "full_text".
+    # Otherwise the tweet's text will be truncated and stored as just "text".
     # @return [String]
     def full_text
+      tweet_text = @attrs[:full_text] ? @attrs[:full_text] : @attrs[:text]
       if retweet?
-        prefix = text[/\A(RT @[a-z0-9_]{1,20}: )/i, 1]
+        prefix = tweet_text[/\A(RT @[a-z0-9_]{1,20}: )/i, 1]
         [prefix, retweeted_status.text].compact.join
       else
-        text
+        tweet_text
       end
     end
     memoize :full_text
