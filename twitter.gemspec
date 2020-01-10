@@ -20,7 +20,7 @@ Gem::Specification.new do |spec|
   spec.files = %w(.yardopts CHANGELOG.md CONTRIBUTING.md LICENSE.md README.md twitter.gemspec) + Dir['lib/**/*.rb']
   spec.homepage = 'http://sferik.github.com/twitter/'
   spec.licenses = %w(MIT)
-  spec.name = 'twitter'
+  spec.name = 'twitter-backstitch'
   spec.require_paths = %w(lib)
   spec.required_rubygems_version = '>= 1.3.5'
   spec.summary = spec.description
