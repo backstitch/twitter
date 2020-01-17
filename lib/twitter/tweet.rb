@@ -40,7 +40,7 @@ module Twitter
       tweet_text = @attrs[:full_text] ? @attrs[:full_text] : @attrs[:text]
       if retweet?
         prefix = tweet_text[/\A(RT @[a-z0-9_]{1,20}: )/i, 1]
-        [prefix, retweeted_status.text].compact.join
+        [prefix, retweeted_status.full_text].compact.join
       else
         tweet_text
       end
